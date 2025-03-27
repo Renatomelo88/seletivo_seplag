@@ -29,7 +29,7 @@ services:
     hostname: postgres17
     container_name: postgres17
     environment:
-      POSTGRES_DB: postgres
+      POSTGRES_DB: seplag
       POSTGRES_PASSWORD: seletivo_seplag
       POSTGRES_USER: root
     ports:
