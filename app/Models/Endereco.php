@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 class Endereco extends ModelBase
 {
     protected $table = 'endereco';
@@ -12,5 +14,9 @@ class Endereco extends ModelBase
         'bairro',
         'cidade_id',
     ];
+
+    public function cidade(): BelongsTo{
+        return $this->belongsTo(Cidade::class, 'cidade_id');
+    }
 
 }

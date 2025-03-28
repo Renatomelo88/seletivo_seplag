@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 class Pessoa extends ModelBase
 {
     protected $table = 'pessoa';
@@ -12,5 +15,16 @@ class Pessoa extends ModelBase
         'mae',
         'pai',
     ];
+
+    protected $dates = ['data_nascimento'];
+
+    public function foto(): HasOne
+    {
+        return $this->hasOne(FotoPessoa::class, 'pessoa_id', 'id');
+    }
+
+    public function endereco(): BelongsToMany{
+        return $this->belongsToMany(Endereco::class, 'pessoa_endereco', 'pessoa_id', 'endereco_id');
+    }
 
 }

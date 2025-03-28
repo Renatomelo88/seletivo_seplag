@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 class ServidorEfetivo extends ModelBase
 {
     protected $table = 'servidor_efetivo';
@@ -11,5 +13,10 @@ class ServidorEfetivo extends ModelBase
         'pessoa_id',
         'matricula',
     ];
+
+    public function pessoa(): BelongsTo
+    {
+        return $this->belongsTo(Pessoa::class, 'pessoa_id');
+    }
 
 }
