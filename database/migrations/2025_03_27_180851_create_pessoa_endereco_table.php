@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('pessoa_endereco', function (Blueprint $table) {
             $table->foreignId('pessoa_id')->constrained('pessoa');
             $table->foreignId('endereco_id')->constrained('endereco');
-            $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
         });
     }
 

@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('unidade_endereco', function (Blueprint $table) {
             $table->foreignId('unidade_id')->constrained('unidade');
             $table->foreignId('endereco_id')->constrained('endereco');
-            $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
         });
     }
 
