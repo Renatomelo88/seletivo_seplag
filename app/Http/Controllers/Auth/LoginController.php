@@ -8,7 +8,7 @@ use Illuminate\Support\Carbon;
 class LoginController
 {
 
-    public const  TOKEN_EXPIRACAO = 1;
+    public const  TOKEN_EXPIRACAO = 5;
 
     public function login(Request $request)
     {
