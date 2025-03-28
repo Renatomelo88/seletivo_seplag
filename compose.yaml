@@ -1,6 +1,8 @@
 services:
   phpSeplag:
     container_name: php-seplag
+    build:
+      context: ./docker
     image: php-seplag
     volumes:
       - ./:/var/www/html
@@ -35,14 +37,14 @@ services:
     ports:
       - "5433:5432"
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - ./data/postgres:/var/lib/postgresql/data
       - ./docker/pg_hba.conf:/etc/postgresql/pg_hba.conf
     restart: unless-stopped
     networks:
       - docker-network
 
   minio:
-    container_name: minio-seletivo-seplag
+    container_name: minio-seplag
     image: quay.io/minio/minio
     ports:
       - "9000:9000"
@@ -51,15 +53,27 @@ services:
       MINIO_ROOT_USER: admin
       MINIO_ROOT_PASSWORD: seletivo_seplag
     volumes:
-      - minio-data:/data
+      - ./data/minio:/data
     command: server /data --console-address ":9001"
     restart: unless-stopped
+    networks:
+      - docker-network
+
+  minio-setup:
+    container_name: minio-setup
+    image: minio/mc
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      sleep 10 &&
+      mc alias set myminio http://minio:9000 admin seletivo_seplag &&
+      mc mb --ignore-existing myminio/seplag &&
+      exit 0
+      "
     networks:
       - docker-network
 
 networks:
   docker-network:
     driver: bridge
-
-volumes:
-  minio-data:
