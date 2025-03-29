@@ -8,7 +8,6 @@ use App\Http\Requests\UnidadeFormRequestUpdate;
 use App\Http\Resources\UnidadeResource;
 use App\Models\Cidade;
 use App\Models\Endereco;
-use App\Models\ServidorEfetivo;
 use App\Models\Unidade;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;

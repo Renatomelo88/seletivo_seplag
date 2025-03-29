@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 
+use App\Http\Controllers\LotacaoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServidorEfetivoController;
 use App\Http\Controllers\ServidorTemporarioController;
@@ -18,5 +19,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('servidor-temporario', ServidorTemporarioController::class);
 
     Route::apiResource('unidade', UnidadeController::class);
+
+    Route::apiResource('lotacao', LotacaoController::class);
 
 });
