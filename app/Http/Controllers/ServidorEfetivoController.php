@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ServidorEfetivoFormRequest;
+use App\Http\Requests\ServidorEfetivoFormRequestStore;
 use App\Http\Requests\ServidorEfetivoFormRequestUpdate;
 use App\Http\Resources\ServidorEfetivoResource;
 use App\Models\ServidorEfetivo;
@@ -31,7 +31,7 @@ class ServidorEfetivoController extends ApiController
         ]);
     }
 
-    public function store(ServidorEfetivoFormRequest $request)
+    public function store(ServidorEfetivoFormRequestStore $request)
     {
         $validated = $request->validated();
 

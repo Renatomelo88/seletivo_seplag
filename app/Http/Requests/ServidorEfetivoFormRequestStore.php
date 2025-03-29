@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Validation\Rule;
 
-class ServidorEfetivoFormRequest extends FormRequestBase
+class ServidorEfetivoFormRequestStore extends FormRequestBase
 {
     /**
      * Determine if the user is authorized to make this request.
