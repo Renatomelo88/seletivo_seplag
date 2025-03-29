@@ -15,6 +15,7 @@ class PessoaResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'pessoa_id' => $this->id,
             'nome' => $this->nome,
             'data_nascimento' => $this->data_nascimento,
             'sexo' => $this->sexo,
