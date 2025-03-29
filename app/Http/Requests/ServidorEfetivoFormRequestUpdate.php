@@ -58,7 +58,7 @@ class ServidorEfetivoFormRequestUpdate extends FormRequestBase
             'numero' => 'sometimes|integer',
             'bairro' => 'sometimes|string|max:100',
             'cidade' => 'sometimes|string|max:200',
-            'uf' => 'sometimes|string|max:2',
+            'uf' => 'sometimes|string|size:2',
         ];
     }
 
@@ -68,7 +68,6 @@ class ServidorEfetivoFormRequestUpdate extends FormRequestBase
             'nome.regex' => 'O nome deve conter nome e sobrenome e não pode ter números.',
             'mae.regex' => 'O nome da mãe deve conter nome e sobrenome e não pode ter números.',
             'pai.regex' => 'O nome do pai deve conter nome e sobrenome e não pode ter números.',
-            'uf.required_with' => 'O UF é obrigatório quando a cidade é fornecida.',
             'matricula.unique' => 'A matrícula informada já está em uso.',
         ];
     }

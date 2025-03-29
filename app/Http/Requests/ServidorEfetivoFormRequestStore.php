@@ -54,7 +54,7 @@ class ServidorEfetivoFormRequestStore extends FormRequestBase
             'numero' => 'required|integer',
             'bairro' => 'required|string|max:100',
             'cidade' => 'required|string|max:200',
-            'uf' => 'required|string|max:2',
+            'uf' => 'required|string|size:2',
         ];
     }
 
