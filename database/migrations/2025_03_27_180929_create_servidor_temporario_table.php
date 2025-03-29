@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('servidor_temporario', function (Blueprint $table) {
             $table->foreignId('pessoa_id')->constrained('pessoa');
-            $table->date('data_adimissao');
+            $table->date('data_admissao');
             $table->date('data_demissao')->nullable();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
