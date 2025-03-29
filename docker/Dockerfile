@@ -24,4 +24,6 @@ RUN docker-php-ext-install \
     bcmath \
     zip
 
+RUN pecl install --force apfd && rm -rf /tmp/pear && docker-php-ext-enable apfd
+
 
