@@ -29,7 +29,7 @@ class ServidorTemporarioFormRequestStore extends FormRequestBase
                 'regex:/^[A-Za-zÀ-ÿ]+(?: [A-Za-zÀ-ÿ]+)+$/',
             ],
             'data_admissao' => 'required|date_format:Y-m-d|after:data_nascimento',
-            'data_demissao' => 'required|date_format:Y-m-d|after:data_admissao',
+            'data_demissao' => 'nullable|date_format:Y-m-d|after:data_admissao',
             'data_nascimento' => 'required|date_format:Y-m-d',
             'sexo' => 'required',
             'mae' => [

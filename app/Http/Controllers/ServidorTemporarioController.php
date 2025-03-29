@@ -56,7 +56,7 @@ class ServidorTemporarioController extends ApiController
             $servidor = ServidorTemporario::create([
                 'pessoa_id' => $pessoa->id,
                 'data_admissao' => $validated['data_admissao'],
-                'data_demissao' => $validated['data_demissao'],
+                'data_demissao' => $validated['data_demissao'] ?? null,
             ]);
 
             // Fazer upload da foto e criar FotoPessoa
