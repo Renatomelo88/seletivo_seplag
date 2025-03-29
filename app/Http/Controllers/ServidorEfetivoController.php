@@ -87,11 +87,7 @@ class ServidorEfetivoController extends ApiController
 
             DB::rollBack();
 
-            return response()->json([
-                'error' => [
-                    'Ocorreu um erro ao processar a requisição. Tente novamente mais tarde.',
-                ],
-            ], 500);
+            return parent::error($e);
         }
     }
 
@@ -191,9 +187,7 @@ class ServidorEfetivoController extends ApiController
 
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json([
-                'error' => 'Ocorreu um erro ao processar a requisição. Tente novamente mais tarde.',
-            ], 500);
+            return parent::error($e);
         }
     }
 
