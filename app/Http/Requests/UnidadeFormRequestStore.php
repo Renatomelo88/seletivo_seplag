@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Models\Unidade;
-use Illuminate\Validation\Rule;
 use RenatoMelo\Rule\Iunique;
 
 class UnidadeFormRequestStore extends FormRequestBase
@@ -47,9 +46,7 @@ class UnidadeFormRequestStore extends FormRequestBase
 
     public function messages(): array
     {
-        return [
-            'sigla.regex' => 'O Sigla.',
-        ];
+        return [];
     }
 
 }

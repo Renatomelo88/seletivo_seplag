@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Models\Unidade;
-use Illuminate\Validation\Rule;
 use RenatoMelo\Rule\Iunique;
 
 class UnidadeFormRequestUpdate extends FormRequestBase
