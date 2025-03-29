@@ -101,7 +101,7 @@ class ServidorEfetivoController extends ApiController
             return response()->json(new ServidorEfetivoResource($servidor));
 
         } catch (ModelNotFoundException $e) {
-            return response()->json(['error' => 'Servidor não encontrado com essa matricula'], 404);
+            return response()->json(['error' => 'Servidor não encontrado'], 404);
         }
     }
 
@@ -195,7 +195,7 @@ class ServidorEfetivoController extends ApiController
         } catch (ModelNotFoundException $e) {
 
             DB::rollBack();
-            return response()->json(['error' => 'Servidor não encontrado para essa matricula'], 404);
+            return response()->json(['error' => 'Servidor não encontrado'], 404);
 
         } catch (\Exception $e) {
             DB::rollBack();
