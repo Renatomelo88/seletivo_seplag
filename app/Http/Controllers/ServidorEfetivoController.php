@@ -162,15 +162,27 @@ class ServidorEfetivoController extends ApiController
             // Atualizar o Endereco, se algum campo relacionado for fornecido
             if (isset($validated['tipo_logradouro']) || isset($validated['logradouro']) ||
                 isset($validated['numero']) || isset($validated['bairro']) ||
-                isset($validated['cidade']) || isset($validated['uf'])) {
-                $endereco = $servidor->pessoa->endereco->first();
-                $endereco->update([
-                    'tipo_logradouro' => $validated['tipo_logradouro'] ?? $endereco->tipo_logradouro,
-                    'logradouro' => $validated['logradouro'] ?? $endereco->logradouro,
-                    'numero' => $validated['numero'] ?? $endereco->numero,
-                    'bairro' => $validated['bairro'] ?? $endereco->bairro,
-                    'cidade_id' => $cidade->id,
-                ]);
+                isset($validated['cidade'])) {
+                $endereco = $servidor->pessoa->endereco->first(); // Pega o primeiro endereço
+                if ($endereco) {
+                    $endereco->update([
+                        'tipo_logradouro' => $validated['tipo_logradouro'] ?? $endereco->tipo_logradouro,
+                        'logradouro' => $validated['logradouro'] ?? $endereco->logradouro,
+                        'numero' => $validated['numero'] ?? $endereco->numero,
+                        'bairro' => $validated['bairro'] ?? $endereco->bairro,
+                        'cidade_id' => $cidade->id,
+                    ]);
+                } else {
+                    // Cria um novo endereço se não existir
+                    $endereco = Endereco::create([
+                        'tipo_logradouro' => $validated['tipo_logradouro'] ?? '',
+                        'logradouro' => $validated['logradouro'] ?? '',
+                        'numero' => $validated['numero'] ?? 0,
+                        'bairro' => $validated['bairro'] ?? '',
+                        'cidade_id' => $cidade->id,
+                    ]);
+                    $servidor->pessoa->endereco()->attach($endereco->id);
+                }
             }
 
             // Recarregar as relações atualizadas

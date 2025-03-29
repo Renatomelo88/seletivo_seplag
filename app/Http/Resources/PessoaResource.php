@@ -21,7 +21,7 @@ class PessoaResource extends JsonResource
             'mae' => $this->mae,
             'pai' => $this->pai,
             'foto' => new FotoPessoaResource($this->whenLoaded('foto')),
-            'endereco' => EnderecoResource::collection($this->whenLoaded('endereco')),
+            'endereco' => new EnderecoResource($this->whenLoaded('endereco')->first()),
         ];
     }
 }
