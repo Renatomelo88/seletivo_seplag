@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 class Lotacao extends ModelBase
 {
     protected $table = 'lotacao';
@@ -12,5 +14,15 @@ class Lotacao extends ModelBase
         'data_remocao',
         'portaria',
     ];
+
+    public function pessoa(): BelongsTo
+    {
+        return $this->belongsTo(Pessoa::class, 'pessoa_id');
+    }
+
+    public function unidade(): BelongsTo
+    {
+        return $this->belongsTo(Unidade::class, 'unidade_id');
+    }
 
 }
