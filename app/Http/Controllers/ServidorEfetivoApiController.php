@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class ServidorEfetivoController extends ApiController
+class ServidorEfetivoApiController extends ApiController
 {
     public function index(Request $request)
     {
