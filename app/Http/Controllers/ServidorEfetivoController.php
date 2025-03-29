@@ -91,7 +91,7 @@ class ServidorEfetivoController extends ApiController
         }
     }
 
-    public function show(Request $request, $matricula)
+    public function show($matricula)
     {
         try {
             $servidor = ServidorEfetivo::with('pessoa.foto', 'pessoa.endereco.cidade')
