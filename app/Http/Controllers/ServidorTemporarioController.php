@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BuscaRequest;
 use App\Http\Requests\ServidorTemporarioFormRequestStore;
 use App\Http\Requests\ServidorTemporarioFormRequestUpdate;
 use App\Http\Resources\ServidorTemporarioResource;
+use App\Http\Resources\ServidorUnidadeResource;
 use App\Models\ServidorTemporario;
 use App\Models\Pessoa;
 use App\Models\FotoPessoa;
@@ -242,6 +244,28 @@ class ServidorTemporarioController extends ApiController
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['error' => 'Erro ao excluir o servidor: ' . $e->getMessage()], 500);
+        }
+    }
+
+    public function busca(BuscaRequest $request)
+    {
+        $quant_itens = min($request->query('per_page', parent::PER_PAGE_DEFAULT), parent::PER_PAGE_MAX);
+        $request = $request->validated();
+        try {
+            $servidoresEfetivos = ServidorTemporario::whereHas('pessoa', function ($query) use ($request) {
+                $query->whereRaw('nome ilike ?', '%' . $request['nome'] . '%');
+            })->with('pessoa', 'pessoa.lotacao.unidade.endereco')
+                ->paginate($quant_itens);
+
+            return response()->json([
+                'last_page' => $servidoresEfetivos->lastPage(),
+                'per_page' => $servidoresEfetivos->perPage(),
+                'total' => $servidoresEfetivos->total(),
+                'itens' => ServidorUnidadeResource::collection($servidoresEfetivos),
+            ]);
+
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Servidor não encontrado'], 404);
         }
     }
 }

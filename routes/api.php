@@ -14,6 +14,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('renova-token', [LoginController::class, 'renovaToken']);
 
+    Route::get('servidor-efetivo/busca', [ServidorEfetivoController::class, 'busca']);
     Route::apiResource('servidor-efetivo', ServidorEfetivoController::class);
 
     Route::apiResource('servidor-temporario', ServidorTemporarioController::class);
