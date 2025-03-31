@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class PessoaResource extends JsonResource
 {
@@ -18,6 +19,7 @@ class PessoaResource extends JsonResource
             'pessoa_id' => $this->id,
             'nome' => $this->nome,
             'data_nascimento' => $this->data_nascimento,
+            'idade' => $this->data_nascimento ? Carbon::parse($this->data_nascimento)->age : null,
             'sexo' => $this->sexo,
             'mae' => $this->mae,
             'pai' => $this->pai,

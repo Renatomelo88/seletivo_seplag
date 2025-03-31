@@ -27,7 +27,7 @@ class ServidorTemporarioController extends ApiController
             'last_page' => $response->lastPage(),
             'per_page' => $response->perPage(),
             'total' => $response->total(),
-            'data' => ServidorTemporarioResource::collection($response->items()),
+            'itens' => ServidorTemporarioResource::collection($response->items()),
         ]);
     }
 

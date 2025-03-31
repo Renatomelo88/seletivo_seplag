@@ -6,8 +6,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LotacaoFormRequestStore;
 use App\Http\Requests\LotacaoFormRequestUpdate;
 use App\Http\Resources\LotacaoResource;
-use App\Models\Cidade;
-use App\Models\Endereco;
 use App\Models\Lotacao;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -26,7 +24,7 @@ class LotacaoController extends ApiController
             'last_page' => $response->lastPage(),
             'per_page' => $response->perPage(),
             'total' => $response->total(),
-            'data' => LotacaoResource::collection($response->items()),
+            'itens' => LotacaoResource::collection($response->items()),
         ]);
     }
 

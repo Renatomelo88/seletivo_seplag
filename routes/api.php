@@ -20,6 +20,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('unidade', UnidadeController::class);
 
+    Route::get('unidade/{unidade_id}/servidoresEfetivos', [UnidadeController::class, 'servidoresEfetivos']);
+
     Route::apiResource('lotacao', LotacaoController::class);
 
 });

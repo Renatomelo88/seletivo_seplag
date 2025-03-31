@@ -27,7 +27,7 @@ class ServidorEfetivoController extends ApiController
             'last_page' => $response->lastPage(),
             'per_page' => $response->perPage(),
             'total' => $response->total(),
-            'data' => ServidorEfetivoResource::collection($response->items()),
+            'itens' => ServidorEfetivoResource::collection($response->items()),
         ]);
     }
 
