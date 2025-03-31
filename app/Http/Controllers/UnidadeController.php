@@ -6,10 +6,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UnidadeFormRequestStore;
 use App\Http\Requests\UnidadeFormRequestUpdate;
 use App\Http\Resources\ServidorEfetivoResource;
+use App\Http\Resources\ServidorTemporarioResource;
 use App\Http\Resources\UnidadeResource;
 use App\Models\Cidade;
 use App\Models\Endereco;
 use App\Models\ServidorEfetivo;
+use App\Models\ServidorTemporario;
 use App\Models\Unidade;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -192,7 +194,40 @@ class UnidadeController extends ApiController
         try {
             $unidade = Unidade::with('endereco.cidade')->findOrFail($id);
 
-            $servidoresEfetivos = ServidorEfetivo::whereHas('pessoa.lotacao.unidade', function ($query) use ($unidade) {
+            $servidoresEfetivos = ServidorEfetivo::whereHas('pessoa.lotacao', function ($query) use ($unidade) {
+                $query->whereNull('data_remocao')
+                    ->whereHas('unidade', function ($query) use ($unidade) {
+                        $query->where('unidade_id', $unidade->id);
+                    });
+            })->with('pessoa.foto')
+                ->paginate($quant_itens);
+
+            $unidadeResource = new UnidadeResource($unidade);
+
+            $response = $unidadeResource->toArray($request);
+
+            $response['servidoresEfetivos'] = [
+                'last_page' => $servidoresEfetivos->lastPage(),
+                'per_page' => $servidoresEfetivos->perPage(),
+                'total' => $servidoresEfetivos->total(),
+                'itens' => ServidorEfetivoResource::collection($servidoresEfetivos),
+            ];
+
+            return response()->json($response);
+
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['error' => 'Unidade não encontrada com esse id'], 404);
+        }
+    }
+
+    public function servidoresTemporarios(Request $request, $id)
+    {
+        $quant_itens = min($request->query('per_page', parent::PER_PAGE_DEFAULT), parent::PER_PAGE_MAX);
+
+        try {
+            $unidade = Unidade::with('endereco.cidade')->findOrFail($id);
+
+            $servidoresEfetivos = ServidorTemporario::whereHas('pessoa.lotacao.unidade', function ($query) use ($unidade) {
                 $query->where('unidade_id', $unidade->id);
             })->with('pessoa.foto')
                 ->paginate($quant_itens);
@@ -203,11 +238,11 @@ class UnidadeController extends ApiController
 
             $servidoresEfetivos = ServidorEfetivoResource::collection($servidoresEfetivos);
 
-            $response['servidoresEfetivos'] = [
+            $response['servidoresTemporarios'] = [
                 'last_page' => $servidoresEfetivos->lastPage(),
                 'per_page' => $servidoresEfetivos->perPage(),
                 'total' => $servidoresEfetivos->total(),
-                'itens' => ServidorEfetivoResource::collection($servidoresEfetivos),
+                'itens' => ServidorTemporarioResource::collection($servidoresEfetivos),
             ];
 
             return response()->json($response);
