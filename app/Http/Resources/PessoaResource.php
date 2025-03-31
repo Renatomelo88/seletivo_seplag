@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\MissingValue;
 use Illuminate\Support\Carbon;
 
 class PessoaResource extends JsonResource
@@ -15,6 +16,7 @@ class PessoaResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+
         return [
             'pessoa_id' => $this->id,
             'nome' => $this->nome,
@@ -24,7 +26,9 @@ class PessoaResource extends JsonResource
             'mae' => $this->mae,
             'pai' => $this->pai,
             'foto' => new FotoPessoaResource($this->whenLoaded('foto')),
-            'endereco' => new EnderecoResource($this->whenLoaded('endereco')->first()),
+            'endereco' => $this->relationLoaded('endereco')
+                ? new EnderecoResource($this->endereco->first())
+                : new MissingValue(),
         ];
     }
 }

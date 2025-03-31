@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\MissingValue;
 use Illuminate\Support\Facades\Storage;
 
 class UnidadeResource extends JsonResource
@@ -19,7 +20,9 @@ class UnidadeResource extends JsonResource
             'id' => $this->id,
             'nome' => $this->nome,
             'sigla' => $this->sigla,
-            'endereco' => new EnderecoResource($this->whenLoaded('endereco')->first()),
+            'endereco' => $this->relationLoaded('endereco')
+                ? new EnderecoResource($this->endereco->first())
+                : new MissingValue(),
         ];
     }
 }

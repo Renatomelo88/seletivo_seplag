@@ -11,7 +11,9 @@ class Unidade extends ModelBase
         'nome',
         'sigla',
     ];
-    public function endereco(): BelongsToMany{
+
+    public function endereco(): BelongsToMany
+    {
         return $this->belongsToMany(Endereco::class, 'unidade_endereco', 'unidade_id', 'endereco_id');
     }
 
