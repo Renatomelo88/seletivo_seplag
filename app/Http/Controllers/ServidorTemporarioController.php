@@ -147,9 +147,8 @@ class ServidorTemporarioController extends ApiController
 
             // Atualizar a Foto, se fornecida
             if ($request->hasFile('foto')) {
-                // Deletar a foto antiga do S3, se existir
                 if ($servidor->pessoa->foto) {
-                    Storage::disk('s3')->delete($servidor->pessoa->foto->hash);
+                    // não apaga o arquivo pois esta usando softdeletes para manter o historico
                     $servidor->pessoa->foto->delete();
                 }
                 // Fazer upload da nova foto
