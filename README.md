@@ -34,9 +34,12 @@
 
 > 8 - SOBRE o Min.IO
 >
->Para acessar as fotos que serão armazenadas no Min.IO deve-se adicionar um host local para o endereço do serviço
+>Para visualizar as fotos que serão armazenadas no Min.IO e retornadas pela API, deve-se adicionar um host local para o endereço do serviço
 >
->```127.0.0.1 minio```
+>```
+>#endereço host do servido no Min.IO rodando no container
+>127.0.0.1 minio 
+>```
 
 
 ---
@@ -96,20 +99,20 @@ O termo `id` nas rotas é um inteiro e representa o id da unidade. Ex: 1
 > Listagem das Unidades: GET http://localhost/api/unidade
 
 > Adicionar Unidade: POST http://localhost/api/unidade
-
-```php
-//campos obrigatórios:
-{
-  "nome",
-  "sigla",
-  "tipo_logradouro",
-  "logradouro",
-  "numero",
-  "bairro",
-  "cidade",
-  "uf",
-}
-```
+>
+>```php
+>//campos obrigatórios:
+>{
+>  "nome",
+>  "sigla",
+>  "tipo_logradouro",
+>  "logradouro",
+>  "numero",
+>  "bairro",
+>  "cidade",
+>  "uf",
+>}
+>```
 
 > Exibir uma Unidade: GET http://localhost/api/unidade/id
 
@@ -133,25 +136,25 @@ O termo `matricula` nas rotas é a matricula do servidor: Ex: 203040
 > Listagem dos Servidores Efetivos: GET http://localhost/api/servidor-efetivo
 
 > Adicionar um Servidore Efetivo: POST http://localhost/api/servidor-efetivo
-
-```php
-//campos obrigatórios:
-{
-  "matricula",
-  "nome",
-  "data_nascimento",
-  "sexo",
-  "mae",
-  "pai",
-  "tipo_logradouro",
-  "logradouro",
-  "numero",
-  "bairro",
-  "cidade",
-  "uf",
-  "foto"
-}
-```
+>
+>```php
+>//campos obrigatórios:
+>{
+>  "matricula",
+>  "nome",
+>  "data_nascimento",
+>  "sexo",
+>  "mae",
+>  "pai",
+>  "tipo_logradouro",
+>  "logradouro",
+>  "numero",
+>  "bairro",
+>  "cidade",
+>  "uf",
+>  "foto"
+>}
+>```
 
 > Exibir um Servidore Efetivo: GET http://localhost/api/servidor-efetivo/matricula
 
@@ -161,13 +164,13 @@ O termo `matricula` nas rotas é a matricula do servidor: Ex: 203040
 > Excluir um Servidore Efetivo: DELETE http://localhost/api/servidor-efetivo/matricula
 
 > Busca servidores pelo nome e retorna dados de lotacao: GET http://localhost/api/servidor-efetivo/busca
-
-```php
-//campos obrigatórios:
-{
-  "nome"
-}
- ```
+>
+>```php
+>//campos obrigatórios:
+>{
+>  "nome"
+>}
+> ```
 
 ---
 
@@ -178,30 +181,30 @@ O termo `pessoa_id` nas rotas é um inteiro: Ex: 10
 > Listagem dos Servidores Temporários: GET http://localhost/api/servidor-temporario
 
 > Adicionar um Servidor Temporário: POST http://localhost/api/servidor-temporario
-
-```php
-//campos obrigatórios:
-{
-  "data_admissao",
-  "nome",
-  "data_nascimento",
-  "sexo",
-  "mae",
-  "pai",
-  "tipo_logradouro",
-  "logradouro",
-  "numero",
-  "bairro",
-  "cidade",
-  "uf",
-  "foto"
-}
-
-//campos opcionais:
-{ 
-  "data_demissao"
-}
-```
+>```php
+>//campos obrigatórios:
+>{
+>  "data_admissao",
+>  "nome",
+>  "data_nascimento",
+>  "sexo",
+>  "mae",
+>  "pai",
+>  "tipo_logradouro",
+>  "logradouro",
+>  "numero",
+>  "bairro",
+>  "cidade",
+>  "uf",
+>  "foto"
+>}
+>
+>
+>//campos opcionais:
+>{ 
+>  "data_demissao"
+>}
+>```
 
 > Exibir um Servidor Temporário: GET http://localhost/api/servidor-temporario/pessoa_id
 
@@ -211,13 +214,13 @@ O termo `pessoa_id` nas rotas é um inteiro: Ex: 10
 > Excluir um Servidor Temporário: DELETE http://localhost/api/servidor-temporario/pessoa_id
 
 > Busca servidores pelo nome e retorna dados de lotacao: GET http://localhost/api/servidor-temporario/busca
-
-```php
-//campos obrigatórios:
-{
-  "nome"
-}
-```
+>
+>```php
+>//campos obrigatórios:
+>{
+>  "nome"
+>}
+>```
 
 ---
 
@@ -228,21 +231,21 @@ O termo `id` nas rotas é um inteiro: ex: 10
 > Listagem das Lotações: GET http://localhost/api/lotacao
 
 > Adicionar uma Lotação: POST http://localhost/api/lotacao
-
-```php
-//campos obrigatórios:
-{
-  "pessoa_id",
-  "unidade_id",
-  "data_lotacao",
-  "portaria"
-}
-
-//campos opcionais:
-{
-  "data_remocao",
-}
-```
+>
+>```php
+>//campos obrigatórios:
+>{
+>  "pessoa_id",
+>  "unidade_id",
+>  "data_lotacao",
+>  "portaria"
+>}
+>
+>//campos opcionais:
+>{
+>  "data_remocao",
+>}
+>```
 
 > Exibir uma Lotação: GET http://localhost/api/lotacao/id
 
