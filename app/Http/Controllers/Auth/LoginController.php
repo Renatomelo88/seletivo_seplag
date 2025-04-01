@@ -33,7 +33,6 @@ class LoginController
         $token->save();
 
         return response()->json([
-            'token' => $token->token,
             'nova_expiracao' => $token->expires_at->toDateTimeString(),
         ]);
 

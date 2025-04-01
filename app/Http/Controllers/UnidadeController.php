@@ -161,6 +161,10 @@ class UnidadeController extends ApiController
         try {
             $unidade = Unidade::with('endereco')->findOrFail($id);
 
+            if(!$unidade->lotacao->isEmpty()){
+                return response()->json(['error' => 'Existem servidores lotados nessa Unidade, ela não poderá ser excluída!'], 409);
+            }
+
             // Desvincular os endereços associados
             $enderecos = $unidade->endereco;
             if ($enderecos->isNotEmpty()) {

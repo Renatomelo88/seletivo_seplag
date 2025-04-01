@@ -27,15 +27,15 @@ services:
       - docker-network
 
   postgres17:
-    image: postgres:17.4
-    hostname: postgres17
-    container_name: postgres17
+    image: postgres
+    hostname: postgres
+    container_name: postgres
     environment:
       POSTGRES_DB: seplag
       POSTGRES_PASSWORD: seletivo_seplag
       POSTGRES_USER: root
     ports:
-      - "5433:5432"
+      - "5432:5432"
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
       - ./docker/pg_hba.conf:/etc/postgresql/pg_hba.conf
