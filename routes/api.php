@@ -17,6 +17,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('servidor-efetivo/busca', [ServidorEfetivoController::class, 'busca']);
     Route::apiResource('servidor-efetivo', ServidorEfetivoController::class);
 
+    Route::get('servidor-temporario/busca', [ServidorTemporarioController::class, 'busca']);
     Route::apiResource('servidor-temporario', ServidorTemporarioController::class);
 
     Route::apiResource('unidade', UnidadeController::class);
