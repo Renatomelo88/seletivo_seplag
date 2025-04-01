@@ -24,6 +24,11 @@ $_> php artisan migrate
 7 - Criar um usuario para os teste, nesse passo criará um usuario com nome 'Seplag', email 'seplag@teste.com' e senha '123456'
 $_> php artisan db:seed
 
+8 - SOBRE o Min.IO
+Para acessar as fotos que serão armazenadas no Min.IO deve-se adicionar um host local para o endereço do serviço
+127.0.0.1 minio
+
+
 ---------------Endpoints da API-------------
 
 -> Rota de Login
@@ -39,7 +44,7 @@ após o login a API retornará o token de acesso do usuário válido por 5 minut
 
 ---------------------- ROTAS AUTENTICADAS --------------------------
 
-para acessar essas rotas o usuário precisa logar e enviar o token (Bearer) no cabeçalho da requisição
+para acessar essas rotas o usuário precisa enviar o token (Bearer) no cabeçalho da requisição
 
 ------------
 -> Rota de renovação do token do usuário
