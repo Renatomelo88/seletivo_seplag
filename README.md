@@ -82,7 +82,7 @@ Listar servidores temporários de uma Unidade: GET http://localhost/api/unidade/
 
 ------------
 -> Rotas de Servidores Efetivos
-matricula nas rotas é a matricula do servidor: ex: 203040
+o termo matricula nas rotas é a matricula do servidor: ex: 203040
 
 Listagem dos Servidores Efetivos: GET http://localhost/api/servidor-efetivo
 
@@ -101,7 +101,7 @@ campos obrigatórios: { nome }
 
 ------------
 -> Rotas de Servidores Temporários
-matricula nas rotas é a matricula do servidor: ex: 203040
+o termo pessoa_id nas rotas é um inteiro: ex: 10
 
 Listagem dos Servidores Temporários: GET http://localhost/api/servidor-temporario
 
@@ -109,18 +109,19 @@ Adicionar um Servidor Temporário: POST http://localhost/api/servidor-temporario
 campos obrigatórios: { data_admissao, nome, data_nascimento, sexo, mae, pai, tipo_logradouro, logradouro, numero, bairro, cidade, uf, foto }
 campos opcionais: { data_demissao }
 
-Exibir um Servidor Temporário: GET http://localhost/api/servidor-temporario/matricula
+Exibir um Servidor Temporário: GET http://localhost/api/servidor-temporario/pessoa_id
 
-Atualizar um Servidor Temporário: PUT http://localhost/api/servidor-temporario/matricula
+Atualizar um Servidor Temporário: PUT http://localhost/api/servidor-temporario/pessoa_id
 atualizará somente os campos que forem passados
 
-Excluir um Servidor Temporário: DELETE http://localhost/api/servidor-temporario/matricula
+Excluir um Servidor Temporário: DELETE http://localhost/api/servidor-temporario/pessoa_id
 
 Busca servidores pelo nome e retorna dados de lotacao: GET http://localhost/api/servidor-temporario/busca
 campos obrigatórios: { nome }
 
 ------------
 -> Rotas de Lotação
+o termo id nas rotas é um inteiro: ex: 10
 
 Listagem das Lotações: GET http://localhost/api/lotacao
 
