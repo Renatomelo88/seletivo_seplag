@@ -1,6 +1,7 @@
-## Repositório para envio de teste em seletivo da seplag
+## Este repositorio implemeta uma API REST desenvolvidada em PHP utlizando Laravel como parte de projeto prático para vaga de desenvolvedor PHP prevista no edital SEPLAG/MT 002/2025.
 
 ## Candidato: Renato Tavares de Melo
+## Inscrição: 8911
 
 ----
 
